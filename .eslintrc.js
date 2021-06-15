@@ -8,7 +8,13 @@ const prettierOptions = JSON.parse(
 module.exports = {
   parser: "@babel/eslint-parser",
   extends: ["airbnb", "prettier", "prettier/react"],
-  plugins: ["prettier", "react", "react-hooks", "jsx-a11y"],
+  plugins: [
+    "prettier",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "sort-destructure-keys",
+  ],
   env: {
     jest: true,
     browser: true,
@@ -30,14 +36,14 @@ module.exports = {
     "no-unused-vars": 2,
     "no-use-before-define": 0,
     "prefer-template": 2,
-    "react/prop-types": ["error"],
+    "react/prop-types": 2,
     "react/jsx-sort-default-props": ["error", { ignoreCase: false }],
     "react/no-did-mount-set-state": "error",
     "react/no-direct-mutation-state": "error",
     "react/sort-prop-types": ["error", { ignoreCase: false }],
     "sort-destructure-keys/sort-destructure-keys": [
-      "error",
-      { caseSensitive: true },
+      2,
+      { caseSensitive: false },
     ],
     "react/jsx-sort-props": [
       "error",
@@ -102,7 +108,6 @@ module.exports = {
     "react/require-default-props": 0,
     "react/require-extension": 0,
     "react/sort-comp": 0,
-    "react/prop-types": 0,
   },
   settings: {
     "import/resolver": {
