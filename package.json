@@ -2,7 +2,7 @@
   "name": "react-redux-boilerplate",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "tvthong <tvthong1995@gmail.com>",
+  "author": "hammad",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config webpack/webpack.dev.js",
