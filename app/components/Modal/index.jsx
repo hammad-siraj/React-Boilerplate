@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import ReactDOM from "@hot-loader/react-dom";
+import PropTypes from "prop-types";
 
 import * as S from "./styled";
 
 const Portal = ({ children }) => ReactDOM.createPortal(children, document.body);
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ children, isOpen, onClose }) => {
   useEffect(() => {
     const downHandler = (event) => {
       if (event.key === "Escape") {
@@ -32,6 +33,16 @@ const Modal = ({ isOpen, onClose, children }) => {
       )}
     </>
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.shape().isRequired,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
+};
+
+Modal.defaultProps = {
+  isOpen: false,
 };
 
 export default Modal;

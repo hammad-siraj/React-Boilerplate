@@ -1,14 +1,15 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import PropTypes from "prop-types";
 
 import Input from "../Input";
 
 import Feedback from "./Feedback";
 
-const Control = ({ type = "text", register, ...rest }) => {
+const Control = ({ register, type, ...rest }) => {
   switch (type) {
     default:
-      return <Input type={type} ref={register} {...rest} />;
+      return <Input ref={register} type={type} {...rest} />;
   }
 };
 
@@ -18,10 +19,30 @@ const Field = ({ name, ...rest }) => {
 
   return (
     <>
-      <Control name={name} invalid={!!error} register={register} {...rest} />
+      <Control invalid={!!error} name={name} register={register} {...rest} />
       {error && <Feedback>{error}</Feedback>}
     </>
   );
+};
+
+Control.propTypes = {
+  register: PropTypes.func.isRequired,
+  rest: PropTypes.shape(),
+  type: PropTypes.string,
+};
+
+Field.propTypes = {
+  name: PropTypes.string.isRequired,
+  rest: PropTypes.shape(),
+};
+
+Field.defaultProps = {
+  rest: {},
+};
+
+Control.defaultProps = {
+  rest: {},
+  type: "text",
 };
 
 export default Field;

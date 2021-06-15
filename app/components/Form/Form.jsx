@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
-const Form = ({ onSubmit, errors, ...rest }) => {
+const Form = ({ errors, onSubmit, ...rest }) => {
   const methods = useForm();
   const { handleSubmit, setError } = methods;
 
@@ -9,8 +10,8 @@ const Form = ({ onSubmit, errors, ...rest }) => {
     if (errors) {
       Object.entries(errors).forEach(([name, message]) => {
         setError(name, {
-          types: "mannual",
           message,
+          types: "mannual",
         });
       });
     }
@@ -21,6 +22,17 @@ const Form = ({ onSubmit, errors, ...rest }) => {
       <form onSubmit={handleSubmit(onSubmit)} {...rest} />
     </FormProvider>
   );
+};
+
+Form.propTypes = {
+  errors: PropTypes.shape(),
+  onSubmit: PropTypes.func.isRequired,
+  rest: PropTypes.shape(),
+};
+
+Form.defaultProps = {
+  errors: {},
+  rest: {},
 };
 
 export default Form;
